@@ -58,14 +58,24 @@
     <!--PASSWORD PROTECTION -->
 
     <script>
-        const password = "password123";
-        const entered = prompt("Enter password:");
+        document.addEventListener("DOMContentLoaded", function () {
+            const password = "password123";
 
-        if (entered === password) {
+            let entered = prompt("Enter password:");
+
+            // Keep asking if wrong
+            while (entered !== password) {
+                if (entered === null) {
+                    // User pressed cancel → optional redirect
+                    window.location.href = "access.html";
+                    return;
+                }
+                entered = prompt("Wrong password. Try again:");
+            }
+
+            // Correct password → show content
             document.getElementById("content").style.display = "block";
-        } else {
-            document.body.innerHTML = "<h1>Access denied</h1>";
-        }
+        });
     </script>
 
 
